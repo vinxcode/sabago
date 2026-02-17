@@ -2,10 +2,18 @@
 "use client"
 
 import { useStore } from '@/store/useStore'
+import { useRouter } from 'next/navigation'
+import { supabase } from '@/lib/supabase'
 import { User, Settings, LogOut, Bell, HelpCircle, Shield, CreditCard, ChevronRight } from 'lucide-react'
 
 export default function ProfilePage() {
+    const router = useRouter()
     const user = useStore((state) => state.user)
+
+    const handleLogout = async () => {
+        await supabase.auth.signOut()
+        router.replace('/auth')
+    }
 
     if (!user) return null
 
@@ -25,7 +33,7 @@ export default function ProfilePage() {
 
                         <div className="relative z-10">
                             <h2 className="text-2xl font-black text-granite-900 mb-1">{user.full_name}</h2>
-                            <p className="text-rosewood-500 font-bold bg-rosewood-50 px-4 py-1 rounded-full inline-block">@{user.username}</p>
+                            <p className="text-rosewood-500 font-bold bg-rosewood-50 px-4 py-1 rounded-full inline-block">@{user.username || 'usuario'}</p>
 
                             <div className="mt-8 grid grid-cols-2 gap-4 w-full">
                                 <div className="bg-slate-50 p-4 rounded-2xl">
@@ -65,7 +73,7 @@ export default function ProfilePage() {
                         ))}
                     </div>
 
-                    <button className="w-full bg-rosewood-50 p-5 rounded-3xl flex items-center gap-4 hover:bg-rosewood-100 transition-colors mt-8 group">
+                    <button onClick={handleLogout} className="w-full bg-rosewood-50 p-5 rounded-3xl flex items-center gap-4 hover:bg-rosewood-100 transition-colors mt-8 group">
                         <div className="w-10 h-10 rounded-full bg-rosewood-100 flex items-center justify-center text-rosewood-600 group-hover:scale-110 transition-transform">
                             <LogOut className="w-5 h-5" />
                         </div>

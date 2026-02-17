@@ -3,7 +3,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Home, ShoppingBag, ScanLine, User } from 'lucide-react'
+import { Home, ShoppingBag, User } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 export function BottomNav() {

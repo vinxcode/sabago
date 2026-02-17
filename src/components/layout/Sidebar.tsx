@@ -3,7 +3,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Home, ShoppingBag, ScanLine, User, LogOut } from 'lucide-react'
+import { Home, ShoppingBag, User, LogOut } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 export function Sidebar() {
@@ -12,7 +12,6 @@ export function Sidebar() {
     const links = [
         { href: '/', label: 'Inicio', icon: Home },
         { href: '/market', label: 'Mercado', icon: ShoppingBag },
-        { href: '/scan', label: 'Escanear', icon: ScanLine },
         { href: '/profile', label: 'Perfil', icon: User },
     ]
 
@@ -48,7 +47,10 @@ export function Sidebar() {
                 })}
             </nav>
 
-            <button className="flex items-center gap-3 px-4 py-3 text-rosewood-400 hover:text-rosewood-300 hover:bg-rosewood-900/20 rounded-xl transition-colors mt-auto">
+            <button
+                onClick={async () => await import('@/lib/supabase').then(m => m.supabase.auth.signOut())}
+                className="flex items-center gap-3 px-4 py-3 text-rosewood-400 hover:text-rosewood-300 hover:bg-rosewood-900/20 rounded-xl transition-colors mt-auto w-full text-left"
+            >
                 <LogOut className="w-5 h-5" />
                 <span>Cerrar Sesión</span>
             </button>

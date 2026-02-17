@@ -13,7 +13,7 @@ export default function Home() {
   if (!user) return <div className="p-8 text-center text-granite-500">Cargando billetera...</div>
 
   return (
-    <div className="pb-24 pt-6 px-6 md:grid md:grid-cols-12 md:gap-8 max-w-6xl mx-auto">
+    <div className="pb-24 pt-6 px-6 flex flex-col gap-8 max-w-2xl mx-auto">
 
       {/* LEFT COLUMN (Header + Balance + Actions) */}
       <div className="md:col-span-12 lg:col-span-8 space-y-8">
@@ -35,12 +35,12 @@ export default function Home() {
         </div>
 
         {/* Balance Card */}
-        <div className="relative overflow-hidden bg-gradient-to-br from-indigo-600 via-berry-500 to-gold-500 rounded-[2.5rem] p-8 text-center shadow-2xl shadow-indigo-300/40 text-white">
+        <div className="relative overflow-hidden bg-gradient-to-br from-indigo-600 to-berry-500 rounded-[2.5rem] p-8 text-center shadow-2xl shadow-indigo-300/40 text-white">
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/20 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-gold-300/30 rounded-full blur-3xl -ml-10 -mb-10 pointer-events-none"></div>
 
           <div className="relative z-10">
-            <p className="text-white/90 font-medium mb-4 uppercase tracking-widest text-xs">Saldo de Actividades</p>
+            <p className="text-white/90 font-medium mb-4 uppercase tracking-widest text-xs">Saldo en sabadolares</p>
             <div className="flex items-center justify-center gap-2 mb-2">
               <span className="text-4xl text-gold-200 font-bold">$</span>
               <h1 className="text-7xl font-black tracking-tighter text-white drop-shadow-lg">
@@ -48,7 +48,7 @@ export default function Home() {
               </h1>
             </div>
             <p className="text-white/80 font-medium bg-white/20 inline-block px-4 py-1 rounded-full text-sm backdrop-blur-sm border border-white/30">
-              Puntos acumulados
+              acumulados
             </p>
           </div>
         </div>
@@ -57,7 +57,7 @@ export default function Home() {
       </div>
 
       {/* RIGHT COLUMN (Activity Feed) */}
-      <div className="md:col-span-12 lg:col-span-4 bg-white md:rounded-3xl md:p-6 md:shadow-lg md:border md:border-space-100 h-fit">
+      <div className="md:col-span-12 lg:col-span-4 bg-white md:rounded-3xl p-4 md:p-6 md:shadow-lg md:border md:border-space-100 h-fit rounded-[2.5rem] ">
         <div className="flex items-center justify-between mb-6">
           <h3 className="text-xl font-black text-space-800 flex items-center gap-2">
             <Clock className="w-5 h-5 text-berry-500" />

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { supabase } from '@/lib/supabase'
 import { useStore } from '@/store/useStore'
@@ -97,9 +98,16 @@ export default function AuthPage() {
                 className="w-full max-w-md bg-white/90 backdrop-blur-xl border border-eggshell-300 p-8 rounded-3xl relative z-10 shadow-2xl"
             >
                 <div className="text-center mb-8">
-                    <h1 className="text-3xl font-bold bg-gradient-to-r from-berry-400 to-gold-400 bg-clip-text text-transparent mb-2">
-                        SABAGO
-                    </h1>
+                    <div className="flex justify-center mb-[-50px]">
+                        <Image
+                            src="/logo.png"
+                            alt="SABAGO"
+                            width={180}
+                            height={50}
+                            className="h-50 w-auto"
+                            priority
+                        />
+                    </div>
                     <p className="text-space-500 text-sm">
                         {isLogin ? 'Bienvenido de vuelta, explorador' : 'Únete a la aventura'}
                     </p>
@@ -182,7 +190,7 @@ export default function AuthPage() {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full bg-berry-500 hover:bg-berry-700 text-white font-medium py-3 rounded-xl shadow-lg shadow-berry-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2 group"
+                        className="w-full bg-[#d90368] hover:bg-[#ae0253] text-white font-medium py-3 rounded-xl shadow-lg shadow-berry-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2 group"
                     >
                         {loading ? (
                             <Loader2 className="h-5 w-5 animate-spin" />

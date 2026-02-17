@@ -27,7 +27,7 @@ export default function RootLayout({
         <StoreInitializer />
         <Sidebar />
         <main className="md:pl-64 min-h-screen relative">
-          <div className="max-w-md md:max-w-5xl mx-auto md:p-8 bg-transparent min-h-screen shadow-none overflow-hidden md:overflow-visible">
+          <div className="max-w-md md:max-w-full mx-auto bg-transparent min-h-screen shadow-none overflow-hidden md:overflow-visible">
             {children}
           </div>
           <BottomNav />

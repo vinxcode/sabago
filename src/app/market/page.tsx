@@ -1,22 +1,15 @@
 
 "use client"
 
-import { useState } from 'react'
 import { useStore } from '@/store/useStore'
-import { ShoppingBag, Filter, Sparkles } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { ShoppingBag, Sparkles } from 'lucide-react'
 
 export default function MarketPage() {
     const items = useStore((state) => state.marketItems)
     const user = useStore((state) => state.user)
-    const [filter, setFilter] = useState<'all' | 'physical' | 'event' | 'privilege'>('all')
-
-    const filteredItems = filter === 'all'
-        ? items
-        : items.filter(item => item.category === filter)
 
     return (
-        <div className="pb-24 pt-6 px-6 space-y-8 md:p-0">
+        <div className="pb-24 pt-6 px-6 md:mx-100 md:mt-10 md:mb-30 space-y-8 md:p-0">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                     <h1 className="text-3xl font-black text-granite-900 flex items-center gap-3">
@@ -25,7 +18,7 @@ export default function MarketPage() {
                         </div>
                         Sabamarket
                     </h1>
-                    <p className="text-granite-500 mt-1 font-medium">Canjea tus <strong>sabadolares</strong> por recompensas increíbles</p>
+                    <p className="text-granite-500 mt-3 font-medium text-xl">Canjea tus <strong>sabadolares</strong> por recompensas increíbles</p>
                 </div>
 
                 <div className="bg-gradient-to-r from-berry-500 to-gold-500 pl-4 pr-6 py-3 rounded-2xl text-white shadow-lg flex items-center gap-3 self-start md:self-auto">
@@ -39,28 +32,7 @@ export default function MarketPage() {
                 </div>
             </div>
 
-            {/* Categories */}
-            <div className="flex gap-3 overflow-x-auto pb-4 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide md:flex-wrap">
-                {[
-                    { id: 'all', label: 'Todos los items' },
-                    { id: 'physical', label: 'Artículos Físicos' },
-                    { id: 'event', label: 'Eventos & Tickets' },
-                    { id: 'privilege', label: 'Privilegios' }
-                ].map((cat) => (
-                    <button
-                        key={cat.id}
-                        onClick={() => setFilter(cat.id as any)}
-                        className={cn(
-                            "px-6 py-3 rounded-xl text-sm font-bold whitespace-nowrap transition-all duration-200 shadow-sm",
-                            filter === cat.id
-                                ? "bg-rosewood-100 text-granite-600 shadow-rosewood-200 shadow-lg scale-105"
-                                : "bg-rosewood-600 text-granite-600 border border-slate-100 hover:bg-slate-50 hover:border-slate-200"
-                        )}
-                    >
-                        {cat.label}
-                    </button>
-                ))}
-            </div>
+
 
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
                 {/* Featured Section (Takes up 1st col on large screens, or full width on mobile) */}
@@ -100,15 +72,12 @@ export default function MarketPage() {
                     <h2 className="text-sm font-black text-granite-400 uppercase tracking-widest mb-6 flex items-center gap-2 before:content-[''] before:w-6 before:h-0.5 before:bg-granite-300">
                         Catálogo
                     </h2>
-                    <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
-                        {filteredItems.map((item) => (
-                            <div key={item.id} className="bg-rosewood-500 rounded-3xl p-4 shadow-sm border border-slate-100 flex flex-col h-full hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4">
+                        {items.map((item) => (
+                            <div key={item.id} className="bg-space-50 rounded-3xl p-4 shadow-sm border border-slate-100 flex flex-col h-full hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
                                 <div className="aspect-square rounded-2xl bg-slate-50 mb-4 overflow-hidden relative">
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img src={item.image_url} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                                    <div className="absolute top-2 right-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg text-xs font-bold text-granite-800 shadow-sm">
-                                        {item.category}
-                                    </div>
                                 </div>
                                 <h3 className="font-bold text-granite-800 text-base leading-tight mb-2 group-hover:text-rosewood-600 transition-colors">{item.title}</h3>
                                 <p className="text-xs text-slate-500 mb-4 line-clamp-2 leading-relaxed">{item.description}</p>

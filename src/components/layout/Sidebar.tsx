@@ -2,6 +2,7 @@
 "use client"
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter, usePathname } from 'next/navigation'
 import { Home, ShoppingBag, User, LogOut } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -27,11 +28,15 @@ export function Sidebar() {
 
     return (
         <aside className="hidden md:flex flex-col w-64 bg-white text-space-900 h-screen fixed left-0 top-0 p-6 z-50 shadow-xl border-r border-eggshell-300">
-            <div className="flex items-center gap-3 mb-10 px-2">
-                <div className="w-8 h-8 rounded-full bg-berry-500 flex items-center justify-center">
-                    <span className="font-bold text-white text-lg">S</span>
-                </div>
-                <h1 className="text-xl font-bold tracking-tight text-space-900">SABAGO</h1>
+            <div className="flex items-center px-2">
+                <Image
+                    src="/logo.png"
+                    alt="SABAGO"
+                    width={400}
+                    height={400}
+                    className="h-40 w-auto"
+                    priority
+                />
             </div>
 
             <nav className="flex-1 space-y-2">

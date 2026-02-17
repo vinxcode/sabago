@@ -16,7 +16,7 @@ export function BottomNav() {
     ]
 
     return (
-        <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-rosewood-500 border-t border-granite-100 pb-safe z-50">
+        <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-eggshell-300 pb-safe z-50 shadow-lg">
             <div className="flex justify-around items-center h-16">
                 {links.map((link) => {
                     const Icon = link.icon
@@ -28,7 +28,7 @@ export function BottomNav() {
                             href={link.href}
                             className={cn(
                                 "flex flex-col items-center justify-center w-full h-full space-y-1",
-                                isActive ? "text-granite-600" : "text-granite-400 hover:text-granite-500"
+                                isActive ? "text-berry-600" : "text-space-500 hover:text-space-700"
                             )}
                         >
                             <Icon className={cn("w-6 h-6", isActive && "fill-current")} />

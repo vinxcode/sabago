@@ -2,12 +2,22 @@
 "use client"
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import { Home, ShoppingBag, User, LogOut } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { supabase } from '@/lib/supabase'
+import { useStore } from '@/store/useStore'
 
 export function Sidebar() {
     const pathname = usePathname()
+    const router = useRouter()
+    const logout = useStore((state) => state.logout)
+
+    const handleLogout = async () => {
+        await supabase.auth.signOut()
+        logout()
+        router.push('/auth')
+    }
 
     const links = [
         { href: '/', label: 'Inicio', icon: Home },
@@ -16,12 +26,12 @@ export function Sidebar() {
     ]
 
     return (
-        <aside className="hidden md:flex flex-col w-64 bg-granite-900 text-white h-screen fixed left-0 top-0 p-6 z-50 shadow-xl">
+        <aside className="hidden md:flex flex-col w-64 bg-white text-space-900 h-screen fixed left-0 top-0 p-6 z-50 shadow-xl border-r border-eggshell-300">
             <div className="flex items-center gap-3 mb-10 px-2">
-                <div className="w-8 h-8 rounded-full bg-rosewood-500 flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full bg-berry-500 flex items-center justify-center">
                     <span className="font-bold text-white text-lg">S</span>
                 </div>
-                <h1 className="text-xl font-bold tracking-tight">SABAGO</h1>
+                <h1 className="text-xl font-bold tracking-tight text-space-900">SABAGO</h1>
             </div>
 
             <nav className="flex-1 space-y-2">
@@ -36,8 +46,8 @@ export function Sidebar() {
                             className={cn(
                                 "flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200",
                                 isActive
-                                    ? "bg-rosewood-600 text-white shadow-lg shadow-rosewood-900/20 font-medium"
-                                    : "text-granite-300 hover:bg-granite-800 hover:text-white"
+                                    ? "text-berry-600"
+                                    : "text-space-600 hover:bg-eggshell-200 hover:text-space-900"
                             )}
                         >
                             <Icon className={cn("w-5 h-5", isActive && "fill-current")} />
@@ -48,8 +58,8 @@ export function Sidebar() {
             </nav>
 
             <button
-                onClick={async () => await import('@/lib/supabase').then(m => m.supabase.auth.signOut())}
-                className="flex items-center gap-3 px-4 py-3 text-rosewood-400 hover:text-rosewood-300 hover:bg-rosewood-900/20 rounded-xl transition-colors mt-auto w-full text-left"
+                onClick={handleLogout}
+                className="flex items-center gap-3 px-4 py-3 text-berry-600 hover:text-berry-700 hover:bg-berry-50 rounded-xl transition-colors mt-auto w-full text-left"
             >
                 <LogOut className="w-5 h-5" />
                 <span>Cerrar Sesión</span>

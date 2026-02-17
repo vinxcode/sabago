@@ -39,6 +39,7 @@ interface AppState {
     setTransactions: (transactions: Transaction[]) => void
     setMarketItems: (items: Item[]) => void
     updateBalance: (amount: number) => void
+    logout: () => void
 }
 
 export const useStore = create<AppState>((set) => ({
@@ -53,4 +54,5 @@ export const useStore = create<AppState>((set) => ({
     updateBalance: (amount) => set((state) => ({
         user: state.user ? { ...state.user, balance: state.user.balance + amount } : null
     })),
+    logout: () => set({ user: null, transactions: [] }), // Reset state on logout
 }))

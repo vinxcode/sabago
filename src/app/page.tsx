@@ -13,41 +13,41 @@ export default function Home() {
   if (!user) return <div className="p-8 text-center text-granite-500">Cargando billetera...</div>
 
   return (
-    <div className="pb-24 pt-6 px-6 space-y-8  max-w-6xl mx-auto">
+    <div className="pb-24 pt-6 px-6 md:grid md:grid-cols-12 md:gap-8 max-w-6xl mx-auto">
 
       {/* LEFT COLUMN (Header + Balance + Actions) */}
       <div className="md:col-span-12 lg:col-span-8 space-y-8">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full ring-4 ring-white shadow-lg bg-orange-200 flex items-center justify-center text-orange-700 overflow-hidden">
+            <div className="w-12 h-12 rounded-full ring-4 ring-white shadow-lg bg-gold-200 flex items-center justify-center text-gold-700 overflow-hidden">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={user.avatar_url} alt={user.full_name} className="w-full h-full object-cover" />
             </div>
             <div>
-              <p className="text-sm text-rosy-taupe-500 font-bold uppercase tracking-wider">Bienvenido</p>
-              <h2 className="text-2xl font-black text-granite-900">{user.full_name}</h2>
+              <p className="text-sm text-berry-500 font-bold uppercase tracking-wider">Bienvenido</p>
+              <h2 className="text-2xl font-black text-space-900">{user.full_name}</h2>
             </div>
           </div>
-          <button className="text-granite-400 hover:text-granite-600 transition-colors bg-white p-2 rounded-full shadow-sm">
+          <button className="text-space-400 hover:text-space-600 transition-colors bg-white p-2 rounded-full shadow-sm">
             <Activity className="w-6 h-6" />
           </button>
         </div>
 
         {/* Balance Card */}
-        <div className="relative overflow-hidden bg-gradient-to-br from-granite-800 to-granite-900 rounded-[2.5rem] p-8 text-center shadow-2xl shadow-granite-900/20 text-white">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
-          <div className="absolute bottom-0 left-0 w-48 h-48 bg-rosewood-500/20 rounded-full blur-3xl -ml-10 -mb-10 pointer-events-none"></div>
+        <div className="relative overflow-hidden bg-gradient-to-br from-indigo-600 via-berry-500 to-gold-500 rounded-[2.5rem] p-8 text-center shadow-2xl shadow-indigo-300/40 text-white">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-white/20 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-gold-300/30 rounded-full blur-3xl -ml-10 -mb-10 pointer-events-none"></div>
 
           <div className="relative z-10">
-            <p className="text-granite-300 font-medium mb-4 uppercase tracking-widest text-xs">Saldo de Actividades</p>
+            <p className="text-white/90 font-medium mb-4 uppercase tracking-widest text-xs">Saldo de Actividades</p>
             <div className="flex items-center justify-center gap-2 mb-2">
-              <span className="text-4xl text-rosewood-400 font-bold">$</span>
-              <h1 className="text-7xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-granite-200">
+              <span className="text-4xl text-gold-200 font-bold">$</span>
+              <h1 className="text-7xl font-black tracking-tighter text-white drop-shadow-lg">
                 {user.balance.toLocaleString()}
               </h1>
             </div>
-            <p className="text-granite-400 font-medium bg-granite-950/30 inline-block px-4 py-1 rounded-full text-sm backdrop-blur-sm border border-white/10">
+            <p className="text-white/80 font-medium bg-white/20 inline-block px-4 py-1 rounded-full text-sm backdrop-blur-sm border border-white/30">
               Puntos acumulados
             </p>
           </div>
@@ -57,13 +57,13 @@ export default function Home() {
       </div>
 
       {/* RIGHT COLUMN (Activity Feed) */}
-      <div className="md:col-span-12 lg:col-span-4 bg-rosewood-600 md:rounded-3xl md:p-6 md:shadow-lg md:border md:border-slate-100 h-fit">
+      <div className="md:col-span-12 lg:col-span-4 bg-white md:rounded-3xl md:p-6 md:shadow-lg md:border md:border-space-100 h-fit">
         <div className="flex items-center justify-between mb-6">
-          <h3 className="text-xl font-black text-granite-800 flex items-center gap-2">
-            <Clock className="w-5 h-5 text-rosewood-500" />
+          <h3 className="text-xl font-black text-space-800 flex items-center gap-2">
+            <Clock className="w-5 h-5 text-berry-500" />
             Actividad
           </h3>
-          <Link href="/activity" className="text-rosewood-600 text-sm font-bold hover:text-rosewood-700 bg-rosewood-50 px-3 py-1 rounded-full transition-colors">
+          <Link href="/activity" className="text-berry-600 text-sm font-bold hover:text-berry-700 bg-berry-50 px-3 py-1 rounded-full transition-colors">
             Ver todo
           </Link>
         </div>
@@ -74,37 +74,37 @@ export default function Home() {
 
             // Helper to get icon based on description/type (simple heuristic)
             let Icon = Gift
-            let iconBg = "bg-rosewood-100"
-            let iconColor = "text-rosewood-600"
+            let iconBg = "bg-berry-100"
+            let iconColor = "text-berry-600"
 
             if (tx.description.toLowerCase().includes('campamento')) {
               Icon = Tent
-              iconBg = "bg-almond-silk-100"
-              iconColor = "text-almond-silk-700"
+              iconBg = "bg-gold-100"
+              iconColor = "text-gold-700"
             } else if (tx.type === 'transfer') {
               Icon = CreditCard
-              iconBg = "bg-rosewood-100"
-              iconColor = "text-rosewood-600"
+              iconBg = "bg-berry-100"
+              iconColor = "text-berry-600"
             } else if (tx.description.toLowerCase().includes('liderazgo') || tx.description.toLowerCase().includes('clase')) {
               Icon = BookOpen
-              iconBg = "bg-granite-100"
-              iconColor = "text-granite-600"
+              iconBg = "bg-space-100"
+              iconColor = "text-space-600"
             }
 
             return (
-              <div key={tx.id} className="group bg-rosewood-600 hover:bg-white hover:shadow-md rounded-2xl p-4 flex items-center justify-between transition-all duration-200 border border-transparent hover:border-slate-100">
+              <div key={tx.id} className="group bg-white hover:bg-space-50 hover:shadow-md rounded-2xl p-4 flex items-center justify-between transition-all duration-200 border border-transparent hover:border-space-100">
                 <div className="flex items-center gap-4">
                   <div className={cn("w-12 h-12 rounded-2xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300", iconBg, iconColor)}>
                     <Icon className="w-6 h-6" />
                   </div>
-                  <div>
-                    <h4 className="font-bold text-granite-800 text-sm mb-0.5">{tx.description}</h4>
-                    <p className="text-xs text-slate-400 font-medium">
+                  <div className="">
+                    <h4 className="font-bold text-space-800 text-sm mb-0.5">{tx.description}</h4>
+                    <p className="text-xs text-space-400 font-medium">
                       {new Date(tx.created_at).toLocaleDateString([], { weekday: 'short', day: 'numeric', month: 'short' })}
                     </p>
                   </div>
                 </div>
-                <span className={cn("font-black text-lg", isNegative ? "text-rosewood-500" : "text-granite-700")}>
+                <span className={cn("font-black text-lg", isNegative ? "text-berry-500" : "text-space-700")}>
                   {isNegative ? '-' : '+'}{tx.amount}
                 </span>
               </div>
@@ -112,7 +112,7 @@ export default function Home() {
           })}
 
           {transactions.length === 0 && (
-            <div className="text-center py-10 text-slate-400">
+            <div className="text-center py-10 text-space-400">
               <p>No hay actividad reciente</p>
             </div>
           )}

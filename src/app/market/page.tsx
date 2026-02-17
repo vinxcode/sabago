@@ -28,12 +28,12 @@ export default function MarketPage() {
                     <p className="text-granite-500 mt-1 font-medium">Canjea tus <strong>sabadolares</strong> por recompensas increíbles</p>
                 </div>
 
-                <div className="bg-gradient-to-r from-granite-800 to-granite-900 pl-4 pr-6 py-3 rounded-2xl text-white shadow-lg flex items-center gap-3 self-start md:self-auto">
-                    <div className="bg-white/20 p-2 rounded-lg">
-                        <Sparkles className="w-5 h-5 text-yellow-300" />
+                <div className="bg-gradient-to-r from-berry-500 to-gold-500 pl-4 pr-6 py-3 rounded-2xl text-white shadow-lg flex items-center gap-3 self-start md:self-auto">
+                    <div className="bg-white/30 p-2 rounded-lg">
+                        <Sparkles className="w-5 h-5 text-yellow-100" />
                     </div>
                     <div>
-                        <p className="text-xs text-granite-300 font-bold uppercase tracking-wider">Tu Saldo</p>
+                        <p className="text-xs text-white/90 font-bold uppercase tracking-wider">Tu Saldo</p>
                         <p className="font-mono font-bold text-xl">{user?.balance.toLocaleString()} sabadolares</p>
                     </div>
                 </div>
@@ -114,7 +114,7 @@ export default function MarketPage() {
                                 <p className="text-xs text-slate-500 mb-4 line-clamp-2 leading-relaxed">{item.description}</p>
                                 <div className="mt-auto flex items-center justify-between pt-4 border-t border-slate-50">
                                     <span className="font-black text-rosewood-600 text-lg">{item.price} <span className="text-xs">Pts</span></span>
-                                    <button className="text-xs bg-granite-900 text-white px-3 py-2 rounded-xl font-bold hover:bg-granite-700 transition-colors">
+                                    <button className="text-xs bg-berry-600 text-white px-3 py-2 rounded-xl font-bold hover:bg-berry-700 transition-colors">
                                         Ver
                                     </button>
                                 </div>

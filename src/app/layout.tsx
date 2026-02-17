@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={`${leagueSpartan.className} ${leagueSpartan.variable} bg-granite-50 min-h-screen pb-safe`}>
+      <body className={`${leagueSpartan.className} ${leagueSpartan.variable} bg-eggshell-100 min-h-screen pb-safe`}>
         <StoreInitializer />
         <Sidebar />
         <main className="md:pl-64 min-h-screen relative">

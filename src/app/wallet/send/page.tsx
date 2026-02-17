@@ -25,19 +25,19 @@ export default function SendPage() {
 
             <div className="max-w-2xl mx-auto md:bg-white md:rounded-[2.5rem] md:shadow-2xl md:overflow-hidden md:mt-8">
                 {/* Header */}
-                <div className="bg-granite-900 text-white p-6 pt-8 md:p-10 rounded-b-3xl md:rounded-t-none relative overflow-hidden">
+                <div className="bg-gradient-to-br from-berry-50 via-white to-gold-50 p-6 pt-8 md:p-10 rounded-b-3xl md:rounded-t-none relative overflow-hidden border-b-2 border-berry-100">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-rosewood-500/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
 
                     <div className="flex items-center gap-4 mb-8 relative z-10">
-                        <Link href="/" className="p-3 bg-white/10 rounded-2xl hover:bg-white/20 transition-colors backdrop-blur-sm">
+                        <Link href="/" className="p-3 bg-berry-100 rounded-2xl hover:bg-berry-200 transition-colors text-berry-700">
                             <ArrowLeft className="w-6 h-6" />
                         </Link>
-                        <h1 className="text-2xl font-black tracking-tight">Enviar Sabadolares</h1>
+                        <h1 className="text-2xl font-black tracking-tight text-space-900">Enviar Sabadolares</h1>
                     </div>
 
                     <div className="text-center pb-6 relative z-10">
-                        <p className="text-granite-400 text-sm mb-2 font-medium uppercase tracking-widest">Saldo Disponible</p>
-                        <p className="text-5xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-granite-300">
+                        <p className="text-berry-600 text-sm mb-2 font-bold uppercase tracking-widest">Saldo Disponible</p>
+                        <p className="text-5xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-berry-600 to-gold-600">
                             {user?.balance.toLocaleString()}
                         </p>
                     </div>

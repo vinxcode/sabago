@@ -84,23 +84,23 @@ export default function AuthPage() {
     }
 
     return (
-        <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4 relative overflow-hidden">
+        <div className="min-h-screen bg-gradient-to-br from-eggshell-100 via-white to-eggshell-200 flex items-center justify-center p-4 relative overflow-hidden">
             {/* Background Effects */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-blue-600/20 rounded-full blur-[120px]" />
-                <div className="absolute top-[40%] -right-[10%] w-[40%] h-[40%] bg-purple-600/20 rounded-full blur-[120px]" />
+                <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-indigo-200/30 rounded-full blur-[120px]" />
+                <div className="absolute top-[40%] -right-[10%] w-[40%] h-[40%] bg-berry-200/30 rounded-full blur-[120px]" />
             </div>
 
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="w-full max-w-md bg-slate-900/50 backdrop-blur-xl border border-white/10 p-8 rounded-3xl relative z-10 shadow-2xl"
+                className="w-full max-w-md bg-white/90 backdrop-blur-xl border border-eggshell-300 p-8 rounded-3xl relative z-10 shadow-2xl"
             >
                 <div className="text-center mb-8">
-                    <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">
+                    <h1 className="text-3xl font-bold bg-gradient-to-r from-berry-400 to-gold-400 bg-clip-text text-transparent mb-2">
                         SABAGO
                     </h1>
-                    <p className="text-slate-400 text-sm">
+                    <p className="text-space-500 text-sm">
                         {isLogin ? 'Bienvenido de vuelta, explorador' : 'Únete a la aventura'}
                     </p>
                 </div>
@@ -115,9 +115,9 @@ export default function AuthPage() {
                                 className="overflow-hidden"
                             >
                                 <div className="space-y-2 mb-4">
-                                    <label className="text-xs font-medium text-slate-300 ml-1">Nombre Completo</label>
+                                    <label className="text-xs font-medium text-space-700 ml-1">Nombre Completo</label>
                                     <div className="relative">
-                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
+                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-space-400">
                                             <UserPlus className="h-4 w-4" />
                                         </div>
                                         <input
@@ -125,7 +125,7 @@ export default function AuthPage() {
                                             placeholder="Tu nombre"
                                             value={fullName}
                                             onChange={(e) => setFullName(e.target.value)}
-                                            className="w-full bg-slate-800/50 border border-white/10 rounded-xl py-3 pl-10 pr-4 text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
+                                            className="w-full bg-eggshell-100 border border-eggshell-300 rounded-xl py-3 pl-10 pr-4 text-space-900 placeholder:text-space-400 focus:outline-none focus:ring-2 focus:ring-berry-500 transition-all"
                                             required={!isLogin}
                                         />
                                     </div>
@@ -135,9 +135,9 @@ export default function AuthPage() {
                     </AnimatePresence>
 
                     <div className="space-y-2">
-                        <label className="text-xs font-medium text-slate-300 ml-1">Email</label>
+                        <label className="text-xs font-medium text-space-700 ml-1">Email</label>
                         <div className="relative">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-space-400">
                                 <Mail className="h-4 w-4" />
                             </div>
                             <input
@@ -145,16 +145,16 @@ export default function AuthPage() {
                                 placeholder="tu@email.com"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                className="w-full bg-slate-800/50 border border-white/10 rounded-xl py-3 pl-10 pr-4 text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
+                                className="w-full bg-eggshell-100 border border-eggshell-300 rounded-xl py-3 pl-10 pr-4 text-space-900 placeholder:text-space-400 focus:outline-none focus:ring-2 focus:ring-berry-500 transition-all"
                                 required
                             />
                         </div>
                     </div>
 
                     <div className="space-y-2">
-                        <label className="text-xs font-medium text-slate-300 ml-1">Contraseña</label>
+                        <label className="text-xs font-medium text-space-700 ml-1">Contraseña</label>
                         <div className="relative">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-500">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-space-400">
                                 <Lock className="h-4 w-4" />
                             </div>
                             <input
@@ -162,7 +162,7 @@ export default function AuthPage() {
                                 placeholder="••••••••"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                className="w-full bg-slate-800/50 border border-white/10 rounded-xl py-3 pl-10 pr-4 text-white placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all"
+                                className="w-full bg-eggshell-100 border border-eggshell-300 rounded-xl py-3 pl-10 pr-4 text-space-900 placeholder:text-space-400 focus:outline-none focus:ring-2 focus:ring-berry-500 transition-all"
                                 required
                                 minLength={6}
                             />
@@ -182,7 +182,7 @@ export default function AuthPage() {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-medium py-3 rounded-xl shadow-lg shadow-blue-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2 group"
+                        className="w-full bg-berry-500 hover:bg-berry-700 text-white font-medium py-3 rounded-xl shadow-lg shadow-berry-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2 group"
                     >
                         {loading ? (
                             <Loader2 className="h-5 w-5 animate-spin" />
@@ -201,12 +201,12 @@ export default function AuthPage() {
                             setIsLogin(!isLogin)
                             setError(null)
                         }}
-                        className="text-slate-400 hover:text-white text-sm transition-colors"
+                        className="text-space-600 hover:text-space-900 text-sm transition-colors"
                     >
                         {isLogin ? (
-                            <>No tienes cuenta? <span className="text-blue-400 font-medium">Regístrate</span></>
+                            <>No tienes cuenta? <span className="text-berry-400 font-medium">Regístrate</span></>
                         ) : (
-                            <>Ya tienes cuenta? <span className="text-blue-400 font-medium">Inicia Sesión</span></>
+                            <>Ya tienes cuenta? <span className="text-berry-400 font-medium">Inicia Sesión</span></>
                         )}
                     </button>
                 </div>

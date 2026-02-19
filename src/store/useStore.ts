@@ -9,7 +9,12 @@ interface UserProfile {
     balance: number
     role: 'user' | 'admin'
     church_id: string | null
+    church?: {
+        name: string
+        invite_code: string
+    }
 }
+
 
 
 interface Item {

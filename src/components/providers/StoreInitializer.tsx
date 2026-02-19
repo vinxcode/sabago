@@ -23,12 +23,13 @@ export function StoreInitializer() {
                 setLoading(true)
 
                 // Parallel fetching for performance
-                // 1. Fetch Profile First
+                // 1. Fetch Profile First with Church association
                 const { data: profile, error: profileError } = await supabase
                     .from('profiles')
-                    .select('*')
+                    .select('*, church:churches(name, invite_code)')
                     .eq('id', userId)
                     .single()
+
 
                 if (profileError) throw profileError
                 if (profile) {

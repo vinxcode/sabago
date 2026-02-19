@@ -4,7 +4,8 @@
 import { useStore } from '@/store/useStore'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
-import { LogOut } from 'lucide-react'
+import { LogOut, Home, Hash } from 'lucide-react'
+
 
 export default function ProfilePage() {
     const router = useRouter()
@@ -35,16 +36,27 @@ export default function ProfilePage() {
                         <h2 className="text-2xl font-black text-space-900 mb-1">{user.full_name}</h2>
                         <p className="text-berry-500 font-bold bg-berry-50 px-4 py-1 rounded-full inline-block">@{user.username || 'usuario'}</p>
 
-                        <div className="mt-8 grid grid-cols-2 gap-4 w-full">
-                            <div className="bg-space-50 p-4 rounded-2xl">
-                                <p className="text-space-400 text-xs font-bold uppercase">Clase</p>
-                                <p className="text-space-800 font-bold">Guía Mayor</p>
+                        <div className="mt-8 grid grid-cols-1 gap-4 w-full">
+                            <div className="bg-space-50 p-4 rounded-2xl flex items-center justify-between">
+                                <div className="text-left">
+                                    <p className="text-space-400 text-xs font-bold uppercase tracking-wider">Iglesia</p>
+                                    <p className="text-space-800 font-bold">{user.church?.name || 'No vinculada'}</p>
+                                </div>
+                                <div className="bg-white p-2 rounded-lg shadow-sm">
+                                    <Home className="w-5 h-5 text-indigo-500" />
+                                </div>
                             </div>
-                            <div className="bg-space-50 p-4 rounded-2xl">
-                                <p className="text-space-400 text-xs font-bold uppercase">Club</p>
-                                <p className="text-space-800 font-bold">Orion</p>
+                            <div className="bg-space-50 p-4 rounded-2xl flex items-center justify-between border-2 border-dashed border-indigo-100">
+                                <div className="text-left">
+                                    <p className="text-space-400 text-xs font-bold uppercase tracking-wider">Código de Invitación</p>
+                                    <p className="text-space-800 font-mono text-xl font-black tracking-widest">{user.church?.invite_code || '-----'}</p>
+                                </div>
+                                <div className="bg-indigo-500 p-2 rounded-lg shadow-md text-white">
+                                    <Hash className="w-5 h-5" />
+                                </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

@@ -2,7 +2,8 @@
 "use client"
 
 import { useStore } from '@/store/useStore'
-import { Send, Download, Tent, CreditCard, Gift, BookOpen, Clock, Activity } from 'lucide-react'
+import { Send, Download, Tent, CreditCard, Gift, BookOpen, Clock, Activity, ArrowRight, ShoppingBag } from 'lucide-react'
+
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
@@ -55,6 +56,52 @@ export default function Home() {
 
 
       </div>
+
+      {/* Admin Actions (Visible only for admins) */}
+      {user.role === 'admin' && (
+        <div className="md:col-span-12 lg:col-span-8 flex flex-col gap-4">
+          <h3 className="text-sm font-black text-granite-400 uppercase tracking-widest flex items-center gap-2 before:content-[''] before:w-6 before:h-0.5 before:bg-berry-500">
+            Acciones de Administrador
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Link
+              href="/wallet/send"
+              className="group bg-gradient-to-br from-berry-500 to-indigo-600 p-6 rounded-[2rem] flex items-center justify-between text-white shadow-xl shadow-berry-200/50 hover:scale-[1.02] transition-all"
+            >
+              <div className="flex items-center gap-4">
+                <div className="bg-white/20 p-4 rounded-2xl backdrop-blur-md">
+                  <Gift className="w-8 h-8 text-gold-200" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-xl uppercase tracking-tighter">Recompensar</h4>
+                  <p className="text-white/80 text-sm">Envía sabadolares a usuarios</p>
+                </div>
+              </div>
+              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                <ArrowRight className="w-6 h-6" />
+              </div>
+            </Link>
+
+            <Link
+              href="/admin/market"
+              className="group bg-gradient-to-br from-gold-400 to-rosewood-500 p-6 rounded-[2rem] flex items-center justify-between text-white shadow-xl shadow-gold-200/50 hover:scale-[1.02] transition-all"
+            >
+              <div className="flex items-center gap-4">
+                <div className="bg-white/20 p-4 rounded-2xl backdrop-blur-md">
+                  <ShoppingBag className="w-8 h-8 text-white" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-xl uppercase tracking-tighter">Editar Market</h4>
+                  <p className="text-white/80 text-sm">Gestiona los productos disponibles</p>
+                </div>
+              </div>
+              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                <ArrowRight className="w-6 h-6" />
+              </div>
+            </Link>
+          </div>
+        </div>
+      )}
 
       {/* RIGHT COLUMN (Activity Feed) */}
       <div className="md:col-span-12 lg:col-span-4 bg-white md:rounded-3xl p-4 md:p-6 md:shadow-lg md:border md:border-space-100 h-fit rounded-[2.5rem] ">

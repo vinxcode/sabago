@@ -43,7 +43,7 @@ export default function AuthPage() {
                 if (data.user) {
                     const { data: profile } = await supabase
                         .from('profiles')
-                        .select('*')
+                        .select('*, church:churches(name, invite_code)')
                         .eq('id', data.user.id)
                         .single()
 

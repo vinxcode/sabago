@@ -30,8 +30,16 @@ export default function AdminMarketPage() {
         category: 'physical'
     })
 
-    if (user?.role !== 'admin') {
-        return <div className="p-8 text-center">No tienes permisos para ver esta página.</div>
+    if (!user) {
+        return (
+            <div className="flex items-center justify-center min-h-screen">
+                <Loader2 className="w-8 h-8 animate-spin text-indigo-600" />
+            </div>
+        )
+    }
+
+    if (user.role !== 'admin') {
+        return <div className="p-8 text-center bg-white rounded-3xl m-6 shadow-sm border border-slate-100 font-bold text-slate-800">No tienes permisos para ver esta página.</div>
     }
 
     const resetForm = () => {
@@ -67,34 +75,54 @@ export default function AdminMarketPage() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
+        if (!user?.church_id) {
+            alert('Error: No se pudo identificar tu iglesia. Por favor, intenta cerrar sesión y volver a entrar.')
+            return
+        }
+
         setLoading(true)
 
         try {
-            const itemData = {
-                ...form,
+            // Clean data for submission
+            const submissionData = {
+                title: form.title,
+                description: form.description,
+                price: Number(form.price) || 0,
+                image_url: form.image_url,
+                category: form.category,
                 church_id: user.church_id
             }
 
             if (isEditing) {
                 const { error } = await supabase
                     .from('items')
-                    .update(itemData)
+                    .update(submissionData)
                     .eq('id', form.id)
 
                 if (error) throw error
-                setMarketItems(items.map(i => i.id === form.id ? { ...i, ...itemData } : i))
+                setMarketItems(items.map(i => i.id === form.id ? { ...i, ...submissionData } : i))
             } else {
                 const { data, error } = await supabase
                     .from('items')
-                    .insert([itemData])
+                    .insert([submissionData])
                     .select()
 
                 if (error) throw error
-                if (data) setMarketItems([data[0], ...items])
+
+                if (data && data.length > 0) {
+                    setMarketItems([data[0], ...items])
+                } else {
+                    // Fallback: if insert succeeded but no data returned (e.g. RLS)
+                    // we might need to rely on the local state or wait for a refetch
+                    console.warn('Insert successful but no data returned from select().')
+                    // Create a dummy item for local state if necessary or just alert
+                    throw new Error('El producto se creó pero no se pudo recuperar la información. Por favor, recarga la página.')
+                }
             }
             resetForm()
         } catch (error: any) {
-            alert('Error: ' + error.message)
+            console.error('Error submitting form:', error)
+            alert('Error: ' + (error.message || 'Ocurrió un error inesperado'))
         } finally {
             setLoading(false)
         }
@@ -137,7 +165,10 @@ export default function AdminMarketPage() {
                             type="number"
                             required
                             value={form.price}
-                            onChange={e => setForm({ ...form, price: parseInt(e.target.value) })}
+                            onChange={e => {
+                                const val = e.target.value === '' ? 0 : parseInt(e.target.value);
+                                setForm({ ...form, price: isNaN(val) ? 0 : val });
+                            }}
                             className="w-full bg-slate-50 border border-slate-200 rounded-2xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all font-mono"
                             placeholder="0"
                         />

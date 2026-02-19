@@ -8,7 +8,9 @@ interface UserProfile {
     avatar_url: string
     balance: number
     role: 'user' | 'admin'
+    church_id: string | null
 }
+
 
 interface Item {
     id: string
@@ -17,7 +19,9 @@ interface Item {
     price: number
     image_url: string
     category: string
+    church_id: string | null
 }
+
 
 interface Transaction {
     id: string

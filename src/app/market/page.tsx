@@ -16,8 +16,9 @@ export default function MarketPage() {
                         <div className="bg-rosewood-100 p-2 rounded-xl text-rosewood-600">
                             <ShoppingBag className="w-8 h-8" />
                         </div>
-                        Sabamarket
+                        Mercado de mi Iglesia
                     </h1>
+
                     <p className="text-granite-500 mt-3 font-medium text-xl">Canjea tus <strong>sabadolares</strong> por recompensas increíbles</p>
                 </div>
 

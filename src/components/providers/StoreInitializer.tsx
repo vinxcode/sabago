@@ -23,35 +23,40 @@ export function StoreInitializer() {
                 setLoading(true)
 
                 // Parallel fetching for performance
-                const [profileRes, txRes, itemsRes] = await Promise.all([
-                    supabase
-                        .from('profiles')
-                        .select('*')
-                        .eq('id', userId)
-                        .single(),
-                    supabase
-                        .from('transactions')
-                        .select('*')
-                        .or(`sender_id.eq.${userId},receiver_id.eq.${userId}`)
-                        .order('created_at', { ascending: false }),
-                    supabase
-                        .from('items')
-                        .select('*')
-                        .order('created_at', { ascending: false })
-                ])
+                // 1. Fetch Profile First
+                const { data: profile, error: profileError } = await supabase
+                    .from('profiles')
+                    .select('*')
+                    .eq('id', userId)
+                    .single()
 
-                if (profileRes.data) {
-                    setUser(profileRes.data as any)
+                if (profileError) throw profileError
+                if (profile) {
+                    setUser(profile as any)
+
+                    // 2. Fetch other data based on profile (church context)
+                    const [txRes, itemsRes] = await Promise.all([
+                        supabase
+                            .from('transactions')
+                            .select('*')
+                            .or(`sender_id.eq.${userId},receiver_id.eq.${userId}`)
+                            .order('created_at', { ascending: false }),
+                        supabase
+                            .from('items')
+                            .select('*')
+                            .eq('church_id', (profile as any).church_id)
+                            .order('created_at', { ascending: false })
+                    ])
+
+                    if (txRes.data) {
+                        setTransactions(txRes.data as any[])
+                    }
+
+                    if (itemsRes.data) {
+                        setMarketItems(itemsRes.data as any[])
+                    }
                 }
 
-                if (txRes.data) {
-                    // Type assertion to match internal store types
-                    setTransactions(txRes.data as any[])
-                }
-
-                if (itemsRes.data) {
-                    setMarketItems(itemsRes.data as any[])
-                }
 
             } catch (error) {
                 console.error('Error fetching data from Supabase:', error)
